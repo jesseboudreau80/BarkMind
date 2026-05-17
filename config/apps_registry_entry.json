@@ -1,0 +1,17 @@
+{
+  "app_id": "barkmind",
+  "name": "BarkMind",
+  "description": "Canine behavior intelligence platform — behavior review, annotation, and AI-assisted analysis",
+  "backend_port": 8107,
+  "frontend_port": 3007,
+  "backend_host": "barkmind-api.jesseboudreau.com",
+  "frontend_host": "barkmind.jesseboudreau.com",
+  "owner": "jesse",
+  "status": "active",
+  "lifecycle_scripts": true,
+  "health_check": "/health",
+  "meta_endpoint": "/.well-known/aegis-meta",
+  "docker_ready": false,
+  "doctrine_version": "2026-05-10",
+  "notes": "Add to ecosystem apps_registry.json and cloudflared config before activating tunnel"
+}
