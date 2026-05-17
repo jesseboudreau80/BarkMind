@@ -8,7 +8,8 @@ Read both before doing anything.
 ## Identity
 
 BarkMind is an Aegis-governed ecosystem service.
-Canonical ports: **backend 8107**, **frontend 3007**.
+Canonical ports: **backend 8108**, **frontend 3008**.
+(Ports 8107/3007 are reserved by Aegis Lite.)
 Never use any other port. Never silently fallback.
 
 ---

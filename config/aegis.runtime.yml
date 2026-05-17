@@ -1,0 +1,75 @@
+# BarkMind — Aegis Runtime Declaration
+# Version: Phase 6
+# Generated: 2026-05-17
+
+runtime:
+  name: barkmind
+  version: "1.0.0"
+  type: behavioral_intelligence_platform
+  doctrine_version: "2026-05-10"
+  owner: jesse
+
+ports:
+  backend: 8108
+  frontend: 3008
+
+capabilities:
+  behavioral_annotation: true
+  expert_review: true
+  multi_expert_consensus: true
+  evidence_locking: true
+  audit_trail: true
+  dataset_export: true
+  telemetry: true
+  reputation_system: true
+  taxonomy_management: true
+  timeline_markers: true
+  organization_support: true
+  dataset_snapshots: true
+  inter_rater_analysis: true
+
+governance:
+  doctrine_compliance: full
+  topology_registered: true
+  port_conflict_detection: true
+  lifecycle_scripts: [start, stop, restart, status]
+  audit_trail: append-only
+  evidence_locking: immutable
+  export_traceability: true
+
+monitoring:
+  health_check: "GET /health"
+  governance_status: "GET /governance/status"
+  metrics: "GET /governance/metrics"
+  telemetry_events: "GET /telemetry/events"
+  ops_overview: "GET /telemetry/ops"
+
+data:
+  database: postgresql
+  database_name: barkmind
+  table_count: 22
+  media_backend: local
+  media_root_env: MEDIA_ROOT
+  s3_ready: true
+
+ai:
+  gateway: openclaw
+  gateway_url: "http://127.0.0.1:18789"
+  direct_api_calls: false
+  models_used:
+    - claude-sonnet-4-6
+
+security:
+  auth: jwt_bearer
+  service_to_service: x-service-key-header
+  file_magic_bytes_validation: true
+  directory_traversal_prevention: true
+  audit_events: write-once
+  evidence_locks: immutable
+
+lifecycle:
+  graceful_shutdown: true
+  startup_validation: true
+  startup_port_check: true
+  aegis_registration: true
+  taxonomy_seed: startup

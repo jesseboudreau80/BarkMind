@@ -12,12 +12,12 @@ BarkMind is an Aegis-governed ecosystem service — not a standalone app.
 It is canine behavior intelligence infrastructure.
 
 Assigned ports:
-- Backend: `8107`
-- Frontend: `3007`
+- Backend: `8108` (8107 reserved by Aegis Lite)
+- Frontend: `3008` (3007 reserved by Aegis Lite)
 
 Hostnames:
-- `barkmind-api.jesseboudreau.com` → `127.0.0.1:8107`
-- `barkmind.jesseboudreau.com` → `127.0.0.1:3007`
+- `barkmind-api.jesseboudreau.com` → `127.0.0.1:8108`
+- `barkmind.jesseboudreau.com` → `127.0.0.1:3008`
 
 ---
 
@@ -25,13 +25,15 @@ Hostnames:
 
 | Phase | Name | Status |
 |---|---|---|
-| 0 | Foundation & Governance Scaffold | In progress |
-| 1 | Backend Core (FastAPI + PostgreSQL) | Pending |
-| 2 | Frontend Core (Next.js App Router) | Pending |
-| 3 | Media Pipeline | Pending |
-| 4 | AI Integration (OpenClaw/Claude) | Pending |
-| 5 | Expert & Reputation Systems | Pending |
-| 6 | Aegis Deep Integration | Pending |
+| 0 | Foundation & Governance Scaffold | **COMPLETE** (2026-05-17) |
+| 1 | Backend Core (FastAPI + PostgreSQL) | **COMPLETE** (2026-05-17) |
+| 2 | Frontend Core (Next.js App Router) | **COMPLETE** (2026-05-17) |
+| 3 | Media Pipeline | **COMPLETE** (2026-05-17) |
+| 4 | Annotation Intelligence Infrastructure | **COMPLETE** (2026-05-17) |
+| 5 | Expert & Reputation Systems | **COMPLETE** (2026-05-17) |
+| 6 | Aegis Deep Integration | **COMPLETE** (2026-05-17) |
+
+**Port resolution complete:** BarkMind normalized to 8108/3008. Aegis Lite retains 8107/3007.
 
 ---
 

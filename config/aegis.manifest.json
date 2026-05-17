@@ -1,0 +1,97 @@
+{
+  "manifest_version": "1.0",
+  "app_id": "barkmind",
+  "name": "BarkMind",
+  "description": "Canine behavioral intelligence platform — expert review, annotation, and dataset governance",
+  "version": "1.0.0",
+  "doctrine_version": "2026-05-10",
+  "owner": "jesse",
+
+  "ports": {
+    "backend": 8108,
+    "frontend": 3008
+  },
+
+  "hosts": {
+    "backend": "barkmind-api.jesseboudreau.com",
+    "frontend": "barkmind.jesseboudreau.com"
+  },
+
+  "endpoints": {
+    "health": "GET /health",
+    "version": "GET /version",
+    "whoami": "GET /whoami",
+    "aegis_meta": "GET /.well-known/aegis-meta",
+    "governance_status": "GET /governance/status",
+    "governance_metrics": "GET /governance/metrics",
+    "telemetry_events": "GET /telemetry/events",
+    "telemetry_summary": "GET /telemetry/summary",
+    "ops_overview": "GET /telemetry/ops",
+    "analytics_summary": "GET /analytics/summary",
+    "audit_log": "GET /audit",
+    "export_cases": "POST /exports/cases",
+    "export_annotations": "POST /exports/annotations",
+    "dataset_snapshot": "POST /dataset/snapshot",
+    "openapi_docs": "GET /docs"
+  },
+
+  "lifecycle": {
+    "start": "./start.sh",
+    "stop": "./stop.sh",
+    "restart": "./restart.sh",
+    "status": "./status.sh"
+  },
+
+  "capabilities": [
+    "behavioral_annotation",
+    "expert_review",
+    "multi_expert_consensus",
+    "evidence_locking",
+    "audit_trail",
+    "dataset_export",
+    "telemetry",
+    "reputation_system",
+    "taxonomy_management",
+    "timeline_markers",
+    "organization_support",
+    "dataset_snapshots",
+    "inter_rater_analysis"
+  ],
+
+  "data_governance": {
+    "audit_trail": true,
+    "evidence_locking": true,
+    "export_traceability": true,
+    "reputation_tracking": true,
+    "annotation_revisions": true,
+    "consensus_records": true,
+    "dataset_snapshots": true
+  },
+
+  "compliance": {
+    "port_conflict_detection": true,
+    "governance_endpoints": true,
+    "lifecycle_scripts": true,
+    "topology_registered": true,
+    "docker_ready": false,
+    "metadata_endpoints": true
+  },
+
+  "tunnel": {
+    "backend_host": "barkmind-api.jesseboudreau.com",
+    "frontend_host": "barkmind.jesseboudreau.com",
+    "backend_service": "http://127.0.0.1:8108",
+    "frontend_service": "http://127.0.0.1:3008",
+    "tunnel": "reselleros"
+  },
+
+  "stack": {
+    "backend": "FastAPI + PostgreSQL + SQLAlchemy",
+    "frontend": "Next.js 16 App Router",
+    "database": "PostgreSQL 18 (barkmind DB)",
+    "media": "local disk (S3-ready abstraction)",
+    "ai_gateway": "OpenClaw (http://127.0.0.1:18789)"
+  },
+
+  "notes": "Phase 6 complete. 22 tables, 19 model classes. Governance + telemetry + exports + dataset snapshots operational."
+}

@@ -1,58 +1,71 @@
 #!/usr/bin/env bash
+# BarkMind Status Script
 
 APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RUNTIME_DIR="$APP_DIR/runtime"
 BACKEND_PID_FILE="$RUNTIME_DIR/backend.pid"
 FRONTEND_PID_FILE="$RUNTIME_DIR/frontend.pid"
-BACKEND_PORT=8107
-FRONTEND_PORT=3007
+BACKEND_PORT=8108
+FRONTEND_PORT=3008
 
-echo "[BARKMIND] Status"
-echo "────────────────────────────────────────────"
+TS=$(date '+%Y-%m-%d %H:%M:%S')
 
-_check_process() {
+echo ""
+echo "  BarkMind Runtime Status — $TS"
+echo "  ════════════════════════════════════════"
+
+_check() {
     local name="$1"
     local pid_file="$2"
     local port="$3"
 
-    local pid_status="no PID file"
-    local port_status=""
-    local health_status=""
+    local pid_line="  no PID file"
+    local port_line
+    local health_line=""
 
     if [[ -f "$pid_file" ]]; then
-        PID=$(cat "$pid_file")
-        if kill -0 "$PID" 2>/dev/null; then
-            pid_status="running (PID $PID)"
-        else
-            pid_status="stale PID file (PID $PID, process gone)"
+        PID=$(cat "$pid_file" 2>/dev/null || echo "")
+        if [[ -n "$PID" ]] && kill -0 "$PID" 2>/dev/null; then
+            pid_line="  running  (PID $PID)"
+        elif [[ -n "$PID" ]]; then
+            pid_line="  STALE    (PID $PID — process gone)"
         fi
     fi
 
     if lsof -ti:"$port" &>/dev/null; then
-        port_status="port $port: IN USE"
+        port_line="  :$port  IN USE"
     else
-        port_status="port $port: free"
+        port_line="  :$port  free"
     fi
 
     if [[ "$name" == "backend" ]]; then
-        if curl -sf "http://127.0.0.1:$port/health" &>/dev/null; then
-            health_status="  /health: OK"
+        if HEALTH=$(curl -sf "http://127.0.0.1:$port/health" 2>/dev/null); then
+            STATUS=$(echo "$HEALTH" | python3 -c "import sys,json; print(json.load(sys.stdin).get('status','?'))" 2>/dev/null || echo "?")
+            VERSION=$(echo "$HEALTH" | python3 -c "import sys,json; print(json.load(sys.stdin).get('version','?'))" 2>/dev/null || echo "?")
+            health_line="  /health  OK (status=$STATUS version=$VERSION)"
         else
-            health_status="  /health: not responding"
+            health_line="  /health  NOT RESPONDING"
         fi
     fi
 
-    echo "  $name:"
-    echo "    PID:    $pid_status"
-    echo "    Port:   $port_status"
-    [[ -n "$health_status" ]] && echo "   $health_status"
+    echo ""
+    echo "  $name"
+    echo "    PID:    $pid_line"
+    echo "    Port:  $port_line"
+    [[ -n "$health_line" ]] && echo "    API:   $health_line"
 }
 
-_check_process "backend" "$BACKEND_PID_FILE" "$BACKEND_PORT"
-_check_process "frontend" "$FRONTEND_PID_FILE" "$FRONTEND_PORT"
+_check "backend"  "$BACKEND_PID_FILE"  "$BACKEND_PORT"
+_check "frontend" "$FRONTEND_PID_FILE" "$FRONTEND_PORT"
 
 echo ""
 echo "  Logs:"
-echo "    backend:  $APP_DIR/logs/backend.log"
-echo "    frontend: $APP_DIR/logs/frontend.log"
-echo "────────────────────────────────────────────"
+echo "    backend:  tail -f $APP_DIR/logs/backend.log"
+echo "    frontend: tail -f $APP_DIR/logs/frontend.log"
+echo ""
+echo "  Endpoints:"
+echo "    API:   http://127.0.0.1:$BACKEND_PORT"
+echo "    UI:    http://127.0.0.1:$FRONTEND_PORT"
+echo "    Docs:  http://127.0.0.1:$BACKEND_PORT/docs"
+echo "  ════════════════════════════════════════"
+echo ""
