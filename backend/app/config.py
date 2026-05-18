@@ -35,7 +35,7 @@ class Settings(BaseSettings):
     # Phase 6: service-to-service auth key for Aegis polling
     service_api_key: str = "barkmind-service-key-change-in-production"
 
-    log_level: str = "INFO"
+    log_level: str = "info"
 
 
 settings = Settings()

@@ -1,0 +1,243 @@
+Usage: uvicorn [OPTIONS] APP
+Try 'uvicorn --help' for help.
+
+Error: Invalid value for '--log-level': 'INFO' is not one of 'critical', 'error', 'warning', 'info', 'debug', 'trace'.
+Usage: uvicorn [OPTIONS] APP
+Try 'uvicorn --help' for help.
+
+Error: Invalid value for '--log-level': 'INFO' is not one of 'critical', 'error', 'warning', 'info', 'debug', 'trace'.
+Usage: uvicorn [OPTIONS] APP
+Try 'uvicorn --help' for help.
+
+Error: Invalid value for '--log-level': 'INFO' is not one of 'critical', 'error', 'warning', 'info', 'debug', 'trace'.
+Usage: uvicorn [OPTIONS] APP
+Try 'uvicorn --help' for help.
+
+Error: Invalid value for '--log-level': 'INFO' is not one of 'critical', 'error', 'warning', 'info', 'debug', 'trace'.
+INFO:     Started server process [372112]
+INFO:     Waiting for application startup.
+2026-05-17 17:18:53,812 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:18:53,812 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:18:53,994 [INFO] barkmind: Tags already seeded
+2026-05-17 17:18:54,004 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:18:54,008 [INFO] barkmind: Media served at /media
+2026-05-17 17:18:54,071 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:18:54,072 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:18:54,072 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:39638 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45898 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45912 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46808 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-05-17 17:20:29,432 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [372112]
+INFO:     Started server process [375906]
+INFO:     Waiting for application startup.
+2026-05-17 17:21:44,208 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:21:44,208 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:21:44,349 [INFO] barkmind: Tags already seeded
+2026-05-17 17:21:44,357 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:21:44,358 [INFO] barkmind: Media served at /media
+2026-05-17 17:21:44,414 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:21:44,414 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:21:44,414 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:38056 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38058 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-05-17 17:21:46,023 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [375906]
+INFO:     Started server process [377991]
+INFO:     Waiting for application startup.
+2026-05-17 17:23:20,201 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:23:20,201 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:23:20,355 [INFO] barkmind: Tags already seeded
+2026-05-17 17:23:20,364 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:23:20,367 [INFO] barkmind: Media served at /media
+2026-05-17 17:23:20,440 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:23:20,440 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:23:20,440 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57238 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57254 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-05-17 17:23:22,778 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [377991]
+INFO:     Started server process [378485]
+INFO:     Waiting for application startup.
+2026-05-17 17:23:36,613 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:23:36,614 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:23:36,798 [INFO] barkmind: Tags already seeded
+2026-05-17 17:23:36,808 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:23:36,809 [INFO] barkmind: Media served at /media
+2026-05-17 17:23:36,860 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:23:36,860 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:23:36,861 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:48352 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45908 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-05-17 17:32:09,639 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [378485]
+INFO:     Started server process [389109]
+INFO:     Waiting for application startup.
+2026-05-17 17:33:09,377 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:33:09,377 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:33:09,536 [INFO] barkmind: Tags already seeded
+2026-05-17 17:33:09,543 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:33:09,544 [INFO] barkmind: Media served at /media
+2026-05-17 17:33:09,609 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:33:09,609 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:33:09,610 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51556 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54738 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54754 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51642 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48516 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51292 - "GET /version HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51030 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58340 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51372 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58048 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49436 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38810 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-05-17 17:52:54,615 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [389109]
+2026-05-17 17:55:02,933 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:55:02,934 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:55:03,083 [INFO] barkmind: Tags already seeded
+2026-05-17 17:55:03,088 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:55:03,089 [INFO] barkmind: Media served at /media
+2026-05-17 17:55:03,152 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:55:03,152 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:55:03,152 [INFO] barkmind: BarkMind backend ready
+2026-05-17 17:57:02,001 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Started server process [420437]
+INFO:     Waiting for application startup.
+2026-05-17 17:57:12,546 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:57:12,546 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:57:12,708 [INFO] barkmind: Tags already seeded
+2026-05-17 17:57:12,716 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:57:12,717 [INFO] barkmind: Media served at /media
+2026-05-17 17:57:12,784 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:57:12,784 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:57:12,785 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51218 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57218 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-05-17 17:57:33,059 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [420437]
+INFO:     Started server process [421184]
+INFO:     Waiting for application startup.
+2026-05-17 17:57:41,370 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 17:57:41,370 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 17:57:41,514 [INFO] barkmind: Tags already seeded
+2026-05-17 17:57:41,521 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 17:57:41,522 [INFO] barkmind: Media served at /media
+2026-05-17 17:57:41,587 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 17:57:41,588 [INFO] barkmind: Aegis registration: 404
+2026-05-17 17:57:41,588 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:56726 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56734 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39246 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39254 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34296 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34288 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44356 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33922 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49526 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /version HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /.well-known/aegis-meta HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "HEAD /health HTTP/1.1" 405 Method Not Allowed
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /whoami HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /version HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /.well-known/aegis-meta HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /governance/status HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /governance/metrics HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /tags HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /cases HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "HEAD /health HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:58908 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41340 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41346 - "GET /version HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41362 - "GET /whoami HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41378 - "GET /tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41386 - "GET /cases HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39286 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39298 - "GET /cases HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39310 - "GET /tags HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /version HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "HEAD /health HTTP/1.1" 405 Method Not Allowed
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /tags HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "OPTIONS /cases HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "HEAD /health HTTP/1.1" 405 Method Not Allowed
+INFO:     2605:a142:2300:2990::1:0 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /cases?limit=5 HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /cases?limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59232 - "GET /cases HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59238 - "GET /cases/94003d51-c644-41a5-8f54-d5154b681af0/media HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /media/cases/94003d51-c644-41a5-8f54-d5154b681af0/original/e2ca0772-5985-43e9-bb85-dcad887a64ac.jpg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42950 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53914 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36658 - "GET /cases?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36668 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /cases?limit=3 HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36694 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-05-17 19:28:38,555 [INFO] barkmind: BarkMind backend shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [421184]
+INFO:     Started server process [528851]
+INFO:     Waiting for application startup.
+2026-05-17 19:28:45,349 [INFO] barkmind: BarkMind backend starting — port 8108
+2026-05-17 19:28:45,349 [INFO] barkmind: Media root: /home/jesse/infra/apps/BarkMind/media
+2026-05-17 19:28:45,525 [INFO] barkmind: Tags already seeded
+2026-05-17 19:28:45,533 [INFO] barkmind: Taxonomy already seeded
+2026-05-17 19:28:45,534 [INFO] barkmind: Media served at /media
+2026-05-17 19:28:45,615 [INFO] httpx: HTTP Request: POST http://127.0.0.1:8102/api/apps/register "HTTP/1.1 404 Not Found"
+2026-05-17 19:28:45,615 [INFO] barkmind: Aegis registration: 404
+2026-05-17 19:28:45,616 [INFO] barkmind: BarkMind backend ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8108 (Press CTRL+C to quit)
+INFO:     127.0.0.1:55828 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2605:a142:2300:2990::1:0 - "GET /cases?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43488 - "GET /cases?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51824 - "GET /cases?limit=20 HTTP/1.1" 200 OK

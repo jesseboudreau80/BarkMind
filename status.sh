@@ -32,7 +32,10 @@ _check() {
         fi
     fi
 
-    if lsof -ti:"$port" &>/dev/null; then
+    # Use ss for reliable port detection (lsof -ti misses child process binds)
+    if ss -tlnp 2>/dev/null | grep -q ":$port "; then
+        port_line="  :$port  IN USE"
+    elif lsof -iTCP:"$port" -sTCP:LISTEN &>/dev/null 2>&1; then
         port_line="  :$port  IN USE"
     else
         port_line="  :$port  free"

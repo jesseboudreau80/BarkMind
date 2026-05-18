@@ -67,13 +67,17 @@ if [[ ! -f "$BACKEND_DIR/app/main.py" ]]; then
 fi
 
 # ─── Port Conflict Enforcement ────────────────────────────────────────────────
-if lsof -ti:$BACKEND_PORT &>/dev/null; then
+_port_in_use() {
+    ss -tlnp 2>/dev/null | grep -q ":$1 " || lsof -iTCP:"$1" -sTCP:LISTEN &>/dev/null 2>&1
+}
+
+if _port_in_use "$BACKEND_PORT"; then
     _err "Port $BACKEND_PORT already in use. Run stop.sh first, or check:"
-    _err "  lsof -i:$BACKEND_PORT"
+    _err "  ss -tlnp | grep $BACKEND_PORT"
     exit 1
 fi
 
-if lsof -ti:$FRONTEND_PORT &>/dev/null; then
+if _port_in_use "$FRONTEND_PORT"; then
     _err "Port $FRONTEND_PORT already in use. Run stop.sh first, or check:"
     _err "  lsof -i:$FRONTEND_PORT"
     exit 1
@@ -140,18 +144,20 @@ if command -v alembic &>/dev/null && [[ -f "$BACKEND_DIR/alembic.ini" ]]; then
 fi
 
 # ─── Start Backend ────────────────────────────────────────────────────────────
-_log "Starting backend (uvicorn on :$BACKEND_PORT)..."
+# Uvicorn requires lowercase log level. Normalize defensively regardless of .env case.
+UVICORN_LOG_LEVEL=$(echo "${LOG_LEVEL:-info}" | tr '[:upper:]' '[:lower:]')
+_log "Starting backend (uvicorn on :$BACKEND_PORT, log-level=$UVICORN_LOG_LEVEL)..."
 cd "$BACKEND_DIR"
 setsid uvicorn app.main:app \
     --host 127.0.0.1 \
     --port "$BACKEND_PORT" \
-    --log-level "${LOG_LEVEL:-info}" \
+    --log-level "$UVICORN_LOG_LEVEL" \
     >> "$LOG_DIR/backend.log" 2>&1 &
-BACKEND_PID=$!
-disown "$BACKEND_PID"
-echo "$BACKEND_PID" > "$BACKEND_PID_FILE"
+SETSID_BACKEND_PID=$!
+disown "$SETSID_BACKEND_PID"
+echo "$SETSID_BACKEND_PID" > "$BACKEND_PID_FILE"  # placeholder — overwritten after health check
 cd "$APP_DIR"
-_ok "Backend process started (PID $BACKEND_PID)"
+_log "Backend launch initiated (setsid wrapper PID $SETSID_BACKEND_PID, resolving actual runtime...)"
 
 # ─── Backend Health Check ─────────────────────────────────────────────────────
 _log "Waiting for backend health..."
@@ -163,9 +169,10 @@ for i in $(seq 1 $MAX_WAIT); do
         _ok "Backend healthy after ${i}s"
         break
     fi
-    # Check if process died
-    if ! kill -0 "$BACKEND_PID" 2>/dev/null; then
-        _err "Backend process $BACKEND_PID died. Check logs: tail -50 $LOG_DIR/backend.log"
+    # Check both the setsid wrapper and the actual port occupant
+    if ! kill -0 "$SETSID_BACKEND_PID" 2>/dev/null && \
+       ! ss -tlnp 2>/dev/null | grep -q ":$BACKEND_PORT "; then
+        _err "Backend process died before becoming healthy. Check logs: tail -50 $LOG_DIR/backend.log"
         exit 1
     fi
     sleep 1
@@ -174,6 +181,20 @@ done
 if [[ "$BACKEND_READY" == "false" ]]; then
     _warn "Backend did not respond within ${MAX_WAIT}s. Check logs:"
     _warn "  tail -50 $LOG_DIR/backend.log"
+fi
+
+# ── PID attribution fix ───────────────────────────────────────────────────────
+# Resolve the actual uvicorn PID from port occupancy — not the setsid wrapper.
+ACTUAL_BACKEND_PID=$(ss -tlnp 2>/dev/null \
+    | grep ":$BACKEND_PORT " \
+    | sed -n 's/.*pid=\([0-9]*\).*/\1/p' \
+    | head -1)
+
+if [[ -n "$ACTUAL_BACKEND_PID" ]] && kill -0 "$ACTUAL_BACKEND_PID" 2>/dev/null; then
+    echo "$ACTUAL_BACKEND_PID" > "$BACKEND_PID_FILE"
+    _ok "Backend runtime PID resolved: $ACTUAL_BACKEND_PID (uvicorn on :$BACKEND_PORT)"
+else
+    _warn "Could not resolve backend runtime PID — using setsid wrapper PID $SETSID_BACKEND_PID"
 fi
 
 # ─── Start Frontend ───────────────────────────────────────────────────────────
@@ -187,21 +208,23 @@ else
     cd "$FRONTEND_DIR"
     setsid npm run start \
         >> "$LOG_DIR/frontend.log" 2>&1 &
-    FRONTEND_PID=$!
-    disown "$FRONTEND_PID"
-    echo "$FRONTEND_PID" > "$FRONTEND_PID_FILE"
+    # NOTE: setsid forks when the calling process is already a session leader.
+    # $! captures the setsid wrapper PID which exits immediately after forking.
+    # The actual npm process gets a NEW PID that we cannot know until it appears.
+    # We use a placeholder PID here and overwrite it after the runtime is confirmed.
+    SETSID_PID=$!
+    disown "$SETSID_PID"
+    echo "$SETSID_PID" > "$FRONTEND_PID_FILE"  # placeholder — overwritten below
     cd "$APP_DIR"
-    _ok "Frontend process started (PID $FRONTEND_PID)"
+    _log "Frontend launch initiated (setsid wrapper PID $SETSID_PID, resolving actual runtime...)"
 
-    # Frontend readiness check
+    # Frontend readiness check — wait for HTTP response on :$FRONTEND_PORT
     MAX_FE_WAIT=20
+    FE_READY=false
     for i in $(seq 1 $MAX_FE_WAIT); do
         if curl -sf "http://127.0.0.1:$FRONTEND_PORT" -o /dev/null &>/dev/null; then
-            _ok "Frontend ready after ${i}s"
-            break
-        fi
-        if ! kill -0 "$FRONTEND_PID" 2>/dev/null; then
-            _warn "Frontend process died. Check logs: tail -50 $LOG_DIR/frontend.log"
+            FE_READY=true
+            _ok "Frontend HTTP ready after ${i}s"
             break
         fi
         if [[ $i -eq $MAX_FE_WAIT ]]; then
@@ -209,6 +232,22 @@ else
         fi
         sleep 1
     done
+
+    # ── PID attribution fix ───────────────────────────────────────────────────
+    # Now that the frontend is confirmed ready, resolve the actual runtime PID.
+    # The process listening on :$FRONTEND_PORT is next-server — the canonical
+    # long-lived runtime. Its PGID == npm's PID, so kill(-PGID) terminates all.
+    ACTUAL_FE_PID=$(ss -tlnp 2>/dev/null \
+        | grep ":$FRONTEND_PORT " \
+        | sed -n 's/.*pid=\([0-9]*\).*/\1/p' \
+        | head -1)
+
+    if [[ -n "$ACTUAL_FE_PID" ]] && kill -0 "$ACTUAL_FE_PID" 2>/dev/null; then
+        echo "$ACTUAL_FE_PID" > "$FRONTEND_PID_FILE"
+        _ok "Frontend runtime PID resolved: $ACTUAL_FE_PID (next-server on :$FRONTEND_PORT)"
+    else
+        _warn "Could not resolve frontend runtime PID — status.sh may show stale"
+    fi
 fi
 
 # ─── Aegis Registration ───────────────────────────────────────────────────────
